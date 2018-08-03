@@ -1,8 +1,29 @@
-# JavaScript学习笔记
+# JavaScript学习笔记 1
+
+目录
+<!-- MarkdownTOC -->
+
+- 对象
+    - 增删对象的属性
+    - 检测对象是否拥有某一个属性
+- 函数
+    - 定义函数
+    - arguments
+    - rest参数
+- 函数的作用域
+    - 全局作用域
+    - 局部作用域
+    - 解构赋值
+- Map 和 Set
+- 高阶函数
+    - `filter()`
+
+<!-- /MarkdownTOC -->
+
 
 ## 对象
 
-```
+```js
 var xcmy = {
 	name: '小明',
 	birth:1990,
@@ -16,13 +37,13 @@ var xcmy = {
 console.log(xcmy.weight);
 console.log(xcmy['where-from']);
 ```
-属性名`where-from`不是一个有效的变量，要用````括起来，访问的时候也不能用`.`访问，要使用`['xxx']`来访问。
+属性名`where-from`不是一个有效的变量，要用单引号括起来，访问的时候也不能用`.`访问，要使用`['xxx']`来访问。
 
 访问不存在的属性不会报错，会返回`undefine`。
 
 ### 增删对象的属性
 
-```
+```js
 var xiaoming = {
     name: '小明'
 };
@@ -38,7 +59,7 @@ delete xiaoming.school; // 删除一个不存在的school属性也不会报错
 
 ### 检测对象是否拥有某一个属性
 
-```
+```js
 var xiaoming = {
     name: '小明',
     birth: 1990,
@@ -57,7 +78,7 @@ var xiaoming = {
 
 ### 定义函数
 
-```
+```js
 function abs(x) {
     if (x >= 0) {
         return x;
@@ -73,7 +94,7 @@ function abs(x) {
 
 第二种定义函数的方法：
 
-```
+```js
 var abs = function (x) {
     if (x >= 0) {
         return x;
@@ -89,7 +110,7 @@ var abs = function (x) {
 
 JavaScript还有一个免费赠送的关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。arguments**类似Array但它不是一个Array**
 
-```
+```js
 function foo(x) {
     console.log('x = ' + x); // 10
     for (var i=0; i<arguments.length; i++) {
@@ -99,7 +120,7 @@ function foo(x) {
 foo(10, 20, 30);
 ```
 
-```
+```js
 function abs() {
     if (arguments.length === 0) {
         return 0;
@@ -116,7 +137,8 @@ console.log(abs(10)); // 10
 利用arguments，你可以获得调用者传入的所有参数。也就是说，即使函数不定义任何参数，还是可以拿到参数的值。
 
 实际上arguments最常用于判断传入参数的个数。你可能会看到这样的写法：
-```
+
+```js
 // foo(a[, b], c)
 // 接收2~3个参数，b是可选参数，如果只传2个参数，b默认为null：
 function foo(a, b, c) {
@@ -132,7 +154,7 @@ function foo(a, b, c) {
 
 ### rest参数
 
-```
+```js
 function foo(a, b, ...rest) {
     console.log('a = ' + a);
     console.log('b = ' + b);
@@ -164,7 +186,7 @@ rest参数只能写在最后，前面用...标识，从运行结果可知，传�
 
 由于JavaScript的函数可以嵌套，此时，内部函数可以访问外部函数定义的变量，反过来则不行.
 
-```
+```js
 'use strict';
 
 function foo() {
@@ -176,7 +198,7 @@ function foo() {
 }
 ```
 
-```
+```js
 function foo() {
     var x = 1;
     function bar() {
@@ -197,7 +219,7 @@ JavaScript的函数在查找变量时从自身函数定义开始，从“内”�
 
 不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象window，全局作用域的变量实际上被绑定到window的一个属性：
 
-```
+```js
 'use strict';
 
 var course = 'Learn JavaScript';
@@ -208,10 +230,10 @@ alert(window.course); // 'Learn JavaScript'
 
 你可能猜到了，由于函数定义有两种方式，以变量方式var foo = function () {}定义的函数实际上也是一个全局变量，因此，顶层函数的定义也被视为一个全局变量，并绑定到window对象：
 
-```
+```js
 'use strict';
 
-function foo() {
+function foo() {Hello, this is a snippet.
     alert('foo');
 }
 
@@ -223,7 +245,7 @@ window.foo(); // 通过window.foo()调用
 
 为了解决块级作用域，ES6引入了新的关键字let，用let替代var可以申明一个块级作用域的变量：
 
-```
+```js
 'use strict';
 
 function foo() {
@@ -239,3 +261,52 @@ function foo() {
 ### 解构赋值
 
 解构赋值可以同时对多个变量同时进行赋值。
+
+## Map 和 Set
+
+JavaScript的默认对象表示方式{}可以视为其他语言中的Map或Dictionary的数据结构，即一组键值对。
+
+但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也是非常合理的。
+
+为了解决这个问题，最新的ES6规范引入了新的数据类型Map。
+
+## 高阶函数
+
+> 高阶函数英文叫Higher-order function。那么什么是高阶函数？
+>
+>JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+
+Example:
+
+```js
+function add(x, y, f) {
+    return f(x) + f(y);
+}
+```
+
+### `filter()`
+
+```js
+'use strict';
+
+function foo() {
+    var sum = 0;
+    for (let i=0; i<100; i++) {
+        sum += i;
+    }
+}
+```
+
+filter也是一个常用的操作，它用于把Array的某些元素过滤掉，然后返回剩下的元素。
+
+和map()类似，Array的filter()也接收一个函数。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。
+
+```js
+var arr = [1, 2, 3, 4, 6, 7, 8, 99, 20];
+var r = arr.filter(function(x) {
+    return x % 2 !== 0;
+    });
+console.log(r);
+```
+
+
