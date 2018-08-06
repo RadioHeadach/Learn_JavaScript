@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<title>Apply JavaScript example</title>
+		<!-- <script>
+			document.addEventListener("DOMContentLoaded", function() {
+				function createParagraph() {
+					var para = document.createElement('p');
+					para.textContent = 'You clicked the button!';
+					document.body.appendChild(para);
+				}
+				var buttons = document.querySelectorAll('button');
+				for(var i = 0; i < buttons.length ; i++) {
+					buttons[i].addEventListener('click', createParagraph);
+				}
+			});
+		</script> -->
+		
+	</head>
+	<body>
+		<h1>Test JavaScript</h1>
+		<button>Click me</button>
+		<script>
+			var btn = document.querySelector('button');
+
+			function random(number) {
+				return Math.floor(Math.random()*(number + 1));
+			}
+
+			btn.onclick = function() {
+				var rndColor = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+				document.body.style.backgroundColor = rndColor;				
+			}
+		</script>
+	</body>
+</html>

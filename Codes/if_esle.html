@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>if_else</title>
+</head>
+<body>
+	<label for="shopping-check">Has the shopping been done?</label>
+	<input type="checkbox" id="shopping-check">
+	<p></p>
+
+	<script>
+		var checkBox = document.querySelector('input');	
+		var para = document.querySelector('p');
+		var shopingDone = false;
+
+		checkBox.addEventListener('change', function() {
+			checkBox.disabled = true;
+			shopingDone = true;
+			updateAll();
+		});
+
+		function updateAll() {
+			if (shopingDone === true) {
+				var childAllowance = 10;
+			} else {
+				var childAllowance = 5;
+			}
+
+			para.textContent = 'Child has earned $' + childAllowance + 'this week.';
+		}
+
+		updateAll();
+	</script>
+</body>
+</html>
