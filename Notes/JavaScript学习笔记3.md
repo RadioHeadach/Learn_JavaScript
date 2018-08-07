@@ -120,3 +120,12 @@ function result() {
 }
 ```
 
+## 技巧
+
+- 如果你不确定 JavaScript 是否添加到了你的 HTML 中，试试暂时删除 main.js 文件中的所有东西，而加上一点点非常简单的但是会有非常明显的影响的 JavaScript 语句，然后保存文件并刷新浏览器。下面的例子会让页面背景转化为红色，如果你的 JavaScript 被加载到了 HTML 中去的话。
+
+
+- `document.querySelector('html').style.backgroundColor = 'red';`
+
+- `Math.round()` 是 JavaScript 中的内建函数，用来生成最接近一个计算式的整数。
+有三种需要被替换的字符串实例。您可以多次重复 replace() 方法，或者您可以使用正则表达式。例如，var text = 'I am the biggest lover, I love my love'; text.replace(/love/g,'like'); 会将“love”的所有实例替换为“like”。记住,字符串是不可变的!
