@@ -1,3 +1,8 @@
+# JavaScript 30 Days challenge | Day Three
+
+## Code
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,3 +87,34 @@
 
 </body>
 </html>
+
+```
+
+
+## CSS变量
+
+### 变量的声明
+
+```css
+:root {
+  --base:#ffc600;
+  --spacing:10px;
+  --blur:10px;
+}		
+```
+
+在变量名前加两根连词线`--`。
+
+### 变量的使用
+
+使用`var()`函数读取变量。
+
+```css
+img{
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
+```
+
+`var()`函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。
